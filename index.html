@@ -3,127 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SuperTracker</title>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0d12;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #080a0f;
   color: white;
 }
+
+/* HEADER */
 
 header {
   text-align: center;
   padding: 55px 20px 35px;
 }
 
-.logo {
+.logo-title {
   font-size: 42px;
   font-weight: 900;
+  letter-spacing: -2px;
 }
 
-.logo span {
+.logo-title span {
   color: #5865f2;
 }
 
 .subtitle {
-  color: #8d93a1;
+  color: #858b99;
   margin-top: 10px;
+  font-size: 15px;
+}
+
+/* SEARCH */
+
+.search-container {
+  max-width: 650px;
+  margin: auto;
+  padding: 0 20px;
 }
 
 .search-box {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 20px;
   display: flex;
   gap: 10px;
 }
 
-input {
+.search-box input {
   flex: 1;
+  min-width: 0;
   padding: 17px;
+  border-radius: 13px;
   border: 1px solid #292e3a;
-  border-radius: 12px;
-  background: #151821;
+  background: #141720;
   color: white;
   font-size: 16px;
   outline: none;
 }
 
-button {
-  padding: 17px 22px;
+.search-box input:focus {
+  border-color: #5865f2;
+}
+
+.search-box button {
+  padding: 0 22px;
   border: none;
-  border-radius: 12px;
+  border-radius: 13px;
   background: #5865f2;
   color: white;
   font-weight: bold;
   font-size: 15px;
 }
 
+/* MAIN */
+
 .container {
-  max-width: 900px;
-  margin: 45px auto;
+  max-width: 1000px;
+  margin: 55px auto;
   padding: 0 20px;
 }
 
-h2 {
+.section-title {
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
+/* GAMES */
+
 .games {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .game {
-  background: #151821;
-  border: 1px solid #292e3a;
-  border-radius: 18px;
-  padding: 25px;
-  transition: 0.2s;
+  background: #13161e;
+  border: 1px solid #262b36;
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: 0.25s;
+  overflow: hidden;
 }
 
 .game:hover {
-  transform: translateY(-3px);
+  transform: translateY(-6px);
   border-color: #5865f2;
 }
 
-.icon {
-  font-size: 42px;
+.game-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
 }
 
 .game h3 {
-  font-size: 22px;
-  margin: 15px 0 8px;
+  margin: 5px 0 10px;
+  font-size: 21px;
 }
 
 .game p {
-  color: #8d93a1;
+  color: #858b99;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .status {
   display: inline-block;
-  margin-top: 10px;
-  padding: 6px 10px;
+  margin-top: 12px;
+  padding: 7px 11px;
   border-radius: 20px;
-  background: #202532;
-  color: #9da5b5;
-  font-size: 13px;
+  background: #202531;
+  color: #9ca3b2;
+  font-size: 12px;
 }
+
+/* RESULT */
 
 #result {
   display: none;
   margin-top: 35px;
-  background: #151821;
-  border: 1px solid #292e3a;
-  border-radius: 18px;
   padding: 25px;
+  background: #13161e;
+  border: 1px solid #262b36;
+  border-radius: 20px;
 }
 
 .player-name {
@@ -131,101 +161,248 @@ h2 {
   font-weight: bold;
 }
 
-.tag {
-  color: #8d93a1;
+.player-tag {
+  color: #858b99;
   margin-top: 5px;
 }
 
+/* FOOTER */
+
 footer {
   text-align: center;
-  padding: 40px 20px;
-  color: #666d7a;
-  font-size: 13px;
+  padding: 50px 20px;
+  color: #606674;
+  font-size: 12px;
 }
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  header {
+    padding-top: 40px;
+  }
+
+  .logo-title {
+    font-size: 36px;
+  }
+
+  .games {
+    grid-template-columns: 1fr;
+  }
+
+  .game {
+    padding: 25px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-box button {
+    padding: 16px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">Super<span>Tracker</span></div>
+
+  <div class="logo-title">
+    Super<span>Tracker</span>
+  </div>
+
   <div class="subtitle">
     Le tracker de statistiques des jeux Supercell
   </div>
+
 </header>
 
-<div class="search-box">
-  <input id="playerTag" placeholder="Entre un Player Tag...">
-  <button onclick="searchPlayer()">Rechercher</button>
-</div>
 
-<div class="container">
+<div class="search-container">
 
-  <h2>Jeux disponibles</h2>
+  <div class="search-box">
 
-  <div class="games">
+    <input
+      id="playerTag"
+      type="text"
+      placeholder="Entre ton Player Tag..."
+    >
 
-    <div class="game">
-      <div class="icon">⭐</div>
-      <h3>Brawl Stars</h3>
-      <p>Profil, trophées et statistiques.</p>
-      <div class="status">Disponible prochainement</div>
-    </div>
-
-    <div class="game">
-      <div class="icon">👑</div>
-      <h3>Clash Royale</h3>
-      <p>Trophées, cartes et statistiques.</p>
-      <div class="status">Disponible prochainement</div>
-    </div>
-
-    <div class="game">
-      <div class="icon">⚔️</div>
-      <h3>Clash of Clans</h3>
-      <p>Village, clan et progression.</p>
-      <div class="status">Bientôt</div>
-    </div>
-
-    <div class="game">
-      <div class="icon">🌾</div>
-      <h3>Hay Day</h3>
-      <p>Profil et progression.</p>
-      <div class="status">Bientôt</div>
-    </div>
+    <button onclick="searchPlayer()">
+      Rechercher
+    </button>
 
   </div>
 
-  <div id="result"></div>
-
 </div>
 
+
+<main class="container">
+
+  <h2 class="section-title">
+    Jeux disponibles
+  </h2>
+
+
+  <div class="games">
+
+
+    <!-- BRAWL STARS -->
+
+    <div class="game">
+
+      <img
+        class="game-logo"
+        src="icon%20main.png"
+        alt="Brawl Stars"
+      >
+
+      <h3>Brawl Stars</h3>
+
+      <p>
+        Consulte le profil et les statistiques
+        des joueurs.
+      </p>
+
+      <div class="status">
+        En développement
+      </div>
+
+    </div>
+
+
+    <!-- CLASH ROYALE -->
+
+    <div class="game">
+
+      <img
+        class="game-logo"
+        src="Clash_Royale_Logo.png"
+        alt="Clash Royale"
+      >
+
+      <h3>Clash Royale</h3>
+
+      <p>
+        Trophées, cartes et statistiques
+        des joueurs.
+      </p>
+
+      <div class="status">
+        En développement
+      </div>
+
+    </div>
+
+
+    <!-- CLASH OF CLANS -->
+
+    <div class="game">
+
+      <img
+        class="game-logo"
+        src="Clash%20of%20Clans%20logo.png"
+        alt="Clash of Clans"
+      >
+
+      <h3>Clash of Clans</h3>
+
+      <p>
+        Village, clan et progression
+        des joueurs.
+      </p>
+
+      <div class="status">
+        En développement
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- RESULTAT RECHERCHE -->
+
+  <div id="result">
+
+    <div class="player-name">
+      Profil recherché
+    </div>
+
+    <div
+      class="player-tag"
+      id="resultTag">
+    </div>
+
+    <br>
+
+    <p>
+      🔎 Recherche du joueur...
+    </p>
+
+    <p style="color:#858b99">
+      Les données réelles seront connectées
+      dans une prochaine étape.
+    </p>
+
+  </div>
+
+</main>
+
+
 <footer>
+
   SuperTracker — Projet indépendant
+
+  <br><br>
+
+  Ce site n'est pas officiel et n'est pas
+  affilié à Supercell.
+
 </footer>
 
+
 <script>
+
 function searchPlayer() {
 
-  const tag = document.getElementById("playerTag").value.trim();
-  const result = document.getElementById("result");
+  const input =
+    document.getElementById("playerTag");
+
+  const result =
+    document.getElementById("result");
+
+  const resultTag =
+    document.getElementById("resultTag");
+
+  const tag =
+    input.value.trim();
+
 
   if (!tag) {
+
     alert("Entre un Player Tag !");
+
     return;
+
   }
+
 
   result.style.display = "block";
 
-  result.innerHTML = `
-    <div class="player-name">Profil recherché</div>
-    <div class="tag">${tag}</div>
-    <br>
-    <p>🔎 Recherche du profil...</p>
-    <p style="color:#8d93a1">
-      La connexion aux données Supercell sera ajoutée dans la prochaine étape.
-    </p>
-  `;
+  resultTag.textContent = tag;
+
+  result.scrollIntoView({
+    behavior: "smooth"
+  });
+
 }
+
 </script>
 
 </body>
