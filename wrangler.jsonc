@@ -1,1 +1,12 @@
 
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "supercell--tracker",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-24",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  }
+}
