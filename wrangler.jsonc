@@ -7,8 +7,5 @@
     "directory": "./",
     "binding": "ASSETS",
     "run_worker_first": ["/api/*"]
-  },
-  "secrets": {
-    "required": ["BRAWL_STARS_API_KEY"]
   }
 }
