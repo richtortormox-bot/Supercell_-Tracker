@@ -1,5 +1,6 @@
-// redeployexport default {
-  async fetch(request, env) {
+
+export default {
+  fetch: async (request, env) => {
     const url = new URL(request.url);
 
     if (url.pathname.startsWith("/api/player/")) {
@@ -8,7 +9,10 @@
       if (!tag) {
         return new Response(
           JSON.stringify({ error: "Player Tag manquant" }),
-          { status: 400, headers: { "Content-Type": "application/json" } }
+          {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          }
         );
       }
 
